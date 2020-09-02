@@ -22,7 +22,7 @@ Compile-AppInBCContainer `
     -updateSymbols `
     -copyAppToSymbolsFolder `
     -enableAppSourceCop `
-    -rulesetFile "$WORKSPACE/goldenedi.ruleset.json" `
+    -rulesetFile "$WORKSPACE\goldenedi.ruleset.json" `
 
 # Get the app file
 $APP = (Get-ChildItem -Path $WORKSPACE -File "*.app").FullName
