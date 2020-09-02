@@ -32,4 +32,4 @@ runs:
   steps:
     - id: create-container
       shell: powershell
-      run: $GITHUB_ACTION_PATH/create.ps1
+      run: ${{ github.action_path }}/create.ps1

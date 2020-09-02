@@ -27,4 +27,4 @@ runs:
   steps:
     - id: publish-app
       shell: powershell
-      run: $GITHUB_ACTION_PATH/publish.ps1
+      run: ${{ github.action_path }}/publish.ps1

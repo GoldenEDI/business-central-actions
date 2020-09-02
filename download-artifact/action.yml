@@ -31,4 +31,4 @@ runs:
   steps:
     - id: download-artifact
       shell: powershell
-      run: $GITHUB_ACTION_PATH/download.ps1
+      run: ${{ github.action_path }}/download.ps1
