@@ -10,6 +10,8 @@ $TYPE = $env:INPUT_TYPE
 # Get the select variable
 $SELECT = $env:INPUT_SELECT
 
+Get-ChildItem env:
+
 # Get the artifact URL
 if ($SELECT -eq "") {
     $ARTIFACT_URL = Get-BCArtifactUrl -country $COUNTRY -type $TYPE -version $VERSION
