@@ -19,7 +19,6 @@ Compile-AppInBCContainer `
     -credential $CREDENTIAL `
     -appProjectFolder $WORKSPACE `
     -appOutputFolder $WORKSPACE `
-    -appSymbolsFolder "$WORKSPACE/.alpackages" `
     -updateSymbols `
     -copyAppToSymbolsFolder `
     -enableAppSourceCop `
