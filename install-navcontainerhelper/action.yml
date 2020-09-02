@@ -1,0 +1,12 @@
+name: 'Install NavContainerHelper'
+description: 'Installs the NavContainerHelper module.'
+branding:
+  icon: 'play'
+  color: green
+runs:
+  using: composite
+
+  steps:
+    - id: install-navcontainerhelper
+      shell: powershell
+      run: $GITHUB_ACTION_PATH/setup.ps1

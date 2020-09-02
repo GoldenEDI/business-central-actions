@@ -1,0 +1,32 @@
+name: 'Compile NAV/Business Central App'
+description: 'Compiles an NAV/Business Central App in an container.'
+branding:
+  icon: 'box'
+  color: green
+
+inputs:
+  username:
+    description: "The username for the NAV user."
+    required: false
+    default: "admin"
+  password:
+    description: "The password for the NAV user."
+    required: false
+    default: "P@ssword1"
+  name:
+    description: "The name of the container."
+    required: false
+    default: "BC"
+
+outputs:
+  app:
+    description: "Compiled App"
+    value: ${{ steps.compile-app.outputs.app }}
+
+runs:
+  using: composite
+
+  steps:
+    - id: compile-app
+      shell: powershell
+      run: $GITHUB_ACTION_PATH/compile.ps1

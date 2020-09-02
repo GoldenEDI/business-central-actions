@@ -1,0 +1,35 @@
+name: 'Create Container'
+description: 'Start a NAV/BC container using the given artifact.'
+branding:
+  icon: 'battery-charging'
+  color: green
+
+inputs:
+  artifact:
+    description: "The URL to the artifact to use."
+    required: true
+  username:
+    description: "The username for the NAV user."
+    required: false
+    default: "admin"
+  password:
+    description: "The password for the NAV user."
+    required: false
+    default: "P@ssword1"
+  name:
+    description: "The name of the container."
+    required: false
+    default: "BC"
+
+outputs:
+  name:
+    description: "Container Name"
+    value: ${{ steps.create-container.outputs.name }}
+
+runs:
+  using: composite
+
+  steps:
+    - id: create-container
+      shell: powershell
+      run: $GITHUB_ACTION_PATH/create.ps1

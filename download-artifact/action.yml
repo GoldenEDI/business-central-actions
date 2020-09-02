@@ -1,0 +1,34 @@
+name: 'Download Artifact'
+description: 'Downloads the chosen NAV/BC artifact.'
+branding:
+  icon: 'download'
+  color: green
+
+inputs:
+  country:
+    description: "Set to download a country specific artifact."
+    required: false
+    default: "w1"
+  version:
+    description: "The NAV/BC version an artifact should be downloaded for."
+    required: true
+  type:
+    description: "Controls of the selected artifact should be sandbox or on-prem."
+    required: false
+    default: "OnPrem"
+  select:
+    description: "The strategy to use when selecting versions"
+    required: false
+
+outputs:
+  artifact:
+    description: "Artifact URL"
+    value: ${{ steps.download-artifact.outputs.artifact }}
+
+runs:
+  using: composite
+
+  steps:
+    - id: download-artifact
+      shell: powershell
+      run: $GITHUB_ACTION_PATH/download.ps1

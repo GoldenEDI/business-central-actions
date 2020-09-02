@@ -1,0 +1,30 @@
+name: 'Publish NAV/Business Central App'
+description: 'Publishes an NAV/Business Central App to a container.'
+branding:
+  icon: 'box'
+  color: green
+
+inputs:
+  username:
+    description: "The username for the NAV user."
+    required: false
+    default: "admin"
+  password:
+    description: "The password for the NAV user."
+    required: false
+    default: "P@ssword1"
+  name:
+    description: "The name of the container."
+    required: false
+    default: "BC"
+  app:
+    description: "The path to the compiled app"
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - id: publish-app
+      shell: powershell
+      run: $GITHUB_ACTION_PATH/publish.ps1
