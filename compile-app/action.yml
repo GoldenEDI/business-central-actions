@@ -30,3 +30,7 @@ runs:
     - id: compile-app
       shell: powershell
       run: ${{ github.action_path }}/compile.ps1
+      env:
+        INPUT_USERNAME: ${{ inputs.username }}
+        INPUT_PASSWORD: ${{ inputs.password }}
+        INPUT_NAME: ${{ inputs.name }}

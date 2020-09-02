@@ -28,3 +28,8 @@ runs:
     - id: publish-app
       shell: powershell
       run: ${{ github.action_path }}/publish.ps1
+      env:
+        INPUT_USERNAME: ${{ inputs.username }}
+        INPUT_PASSWORD: ${{ inputs.password }}
+        INPUT_NAME: ${{ inputs.name }}
+        INPUT_APP: ${{ inputs.app }}

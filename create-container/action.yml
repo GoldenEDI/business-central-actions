@@ -33,3 +33,8 @@ runs:
     - id: create-container
       shell: powershell
       run: ${{ github.action_path }}/create.ps1
+      env:
+        INPUT_ARTIFACT: ${{ inputs.artifact }}
+        INPUT_USERNAME: ${{ inputs.username }}
+        INPUT_PASSWORD: ${{ inputs.password }}
+        INPUT_NAME: ${{ inputs.name }}
