@@ -32,3 +32,8 @@ runs:
     - id: download-artifact
       shell: powershell
       run: ${{ github.action_path }}/download.ps1
+      env:
+        INPUT_COUNTRY: ${{ inputs.country }}
+        INPUT_VERSION: ${{ inputs.version }}
+        INPUT_TYPE: ${{ inputs.type }}
+        INPUT_SELECT: ${{ inputs.select }}
