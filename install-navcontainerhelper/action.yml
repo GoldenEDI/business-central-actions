@@ -9,4 +9,4 @@ runs:
   steps:
     - id: install-navcontainerhelper
       shell: powershell
-      run: $GITHUB_ACTION_PATH\setup.ps1
+      run: ${{ github.action_path }}/setup.ps1
