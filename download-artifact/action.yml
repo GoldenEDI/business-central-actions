@@ -22,7 +22,7 @@ inputs:
 
 outputs:
   artifact:
-    description: "Artifact URL"
+    description: "Artifact"
     value: ${{ steps.download-artifact.outputs.artifact }}
 
 runs:
