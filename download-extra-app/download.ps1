@@ -1,5 +1,5 @@
 # Get the URL
-$URI = $env:INPUT_URL
+$URI = $env:INPUT_URI
 
 # Get the target file name
 $NAME = $env:INPUT_NAME
