@@ -1,0 +1,38 @@
+name: 'Sign App'
+description: 'Sign app using base64 encoded PFX file.'
+branding:
+  icon: 'lock'
+  color: green
+
+inputs:
+  certificate:
+    description: "The base64 encoded PFX file"
+    required: true
+  password:
+    description: "Password for the PFX file"
+    required: true
+  app:
+    description: "The app to sign"
+    required: true
+  container:
+    description: "The container to use for signing"
+    required: false
+    default: "BC"
+
+outputs:
+  app:
+    description: "App"
+    value: ${{ steps.sign-app.outputs.app }}
+
+runs:
+  using: composite
+
+  steps:
+    - id: sign-app
+      shell: powershell
+      run: ${{ github.action_path }}/sign.ps1
+      env:
+        INPUT_CERTIFICATE: ${{ inputs.certificate }}
+        INPUT_PASSWORD: ${{ inputs.password }}
+        INPUT_APP: ${{ inputs.app }}
+        INPUT_CONTAINER: ${{ inputs.container }}
