@@ -1,0 +1,29 @@
+name: 'Download Extra App'
+description: 'Downloads the given extra app file'
+branding:
+  icon: 'download'
+  color: green
+
+inputs:
+  uri:
+    description: "The URL for the extra file to download"
+    required: true
+  name:
+    description: "The name of the file when saved"
+    required: true
+
+outputs:
+  app:
+    description: "App"
+    value: ${{ steps.download-app.outputs.app }}
+
+runs:
+  using: composite
+
+  steps:
+    - id: download-app
+      shell: powershell
+      run: ${{ github.action_path }}/download.ps1
+      env:
+        INPUT_URI: ${{ inputs.uri }}
+        INPUT_NAME: ${{ inputs.name }}
