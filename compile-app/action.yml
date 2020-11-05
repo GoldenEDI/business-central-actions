@@ -17,6 +17,10 @@ inputs:
     description: "The name of the container."
     required: false
     default: "BC"
+  current_version:
+    description: "The current version of the app to use for validation."
+    required: false
+    default: ""
 
 outputs:
   app:
@@ -34,3 +38,4 @@ runs:
         INPUT_USERNAME: ${{ inputs.username }}
         INPUT_PASSWORD: ${{ inputs.password }}
         INPUT_NAME: ${{ inputs.name }}
+        INPUT_CURRENT: ${{ inputs.current }}
