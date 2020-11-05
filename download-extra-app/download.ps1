@@ -8,7 +8,7 @@ $NAME = $env:INPUT_NAME
 $WORKSPACE = $env:GITHUB_WORKSPACE
 
 # Download the file
-Invoke-WebRequest -Uri $URI -OutFile "$WORKSPACE/$Name" -Force
+Invoke-WebRequest -Uri $URI -OutFile "$WORKSPACE/$Name"
 
 # Export the URL
 Write-Host "::set-output name=app::$WORKSPACE/$Name"
