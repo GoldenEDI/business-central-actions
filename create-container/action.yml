@@ -23,7 +23,6 @@ inputs:
   license:
     description: "The license file content, base64 encoded."
     required: false
-    default: ${{ secrets.LICENSE }}
 
 outputs:
   name:

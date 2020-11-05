@@ -16,17 +16,24 @@ $LICENSE_DATA = $env:INPUT_LICENSE
 # Get the workspace folder
 $WORKSPACE = $env:GITHUB_WORKSPACE
 
-# Path to the license file
-$LICENSE_FILE = "$WORKSPACE/License.flf"
+if (($LICENSE_DATA -ne $nil) -and (-ne "")) {
+    # Path to the license file
+    $LICENSE_FILE = "$WORKSPACE/License.flf"
 
-# Decode and create the license file
-[IO.File]::WriteAllBytes($LICENSE_FILE, [Convert]::FromBase64String($LICENSE_DATA))
+    # Decode and create the license file
+    [IO.File]::WriteAllBytes($LICENSE_FILE, [Convert]::FromBase64String($LICENSE_DATA))
+}
 
 # Build the credentials
 $CREDENTIAL = New-Object pscredential $USERNAME, (ConvertTo-SecureString -String $PASSWORD -AsPlainText -Force)
 
-# Create the container
-New-BCContainer -accept_eula -containerName $NAME -artifactUrl $ARTIFACT -Credential $CREDENTIAL -auth UserPassword -updateHosts -additionalParameters @("--volume $WORKSPACE`:c:\project") -licenseFile $LICENSE_FILE
+if (($LICENSE_FILE -ne $nil) -and (-ne "")) {
+    # Create the container
+    New-BCContainer -accept_eula -containerName $NAME -artifactUrl $ARTIFACT -Credential $CREDENTIAL -auth UserPassword -updateHosts -additionalParameters @("--volume $WORKSPACE`:c:\project") -licenseFile $LICENSE_FILE
+} else {
+    # Create the container without license
+    New-BCContainer -accept_eula -containerName $NAME -artifactUrl $ARTIFACT -Credential $CREDENTIAL -auth UserPassword -updateHosts -additionalParameters @("--volume $WORKSPACE`:c:\project")
+}
 
 # Export variables
 Write-Host "::set-output name=name::$NAME"
