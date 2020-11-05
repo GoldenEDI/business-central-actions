@@ -7,6 +7,9 @@ $NAME = $env:INPUT_NAME
 # Get the workspace
 $WORKSPACE = $env:GITHUB_WORKSPACE
 
+# Create directory
+New-Item -ItemType Directory -Path (Split-Path "$WORKSPACE/$Name") -Force
+
 # Download the file
 Invoke-WebRequest -Uri $URI -OutFile "$WORKSPACE/$Name"
 
