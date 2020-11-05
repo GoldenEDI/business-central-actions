@@ -10,11 +10,14 @@ $TYPE = $env:INPUT_TYPE
 # Get the select variable
 $SELECT = $env:INPUT_SELECT
 
+# Get the token
+$TOKEN = $env:INPUT_TOKEN
+
 # Get the artifact URL
 if ($SELECT -eq "") {
-    $ARTIFACT_URL = Get-BCArtifactUrl -country $COUNTRY -type $TYPE -version $VERSION
+    $ARTIFACT_URL = Get-BCArtifactUrl -country $COUNTRY -type $TYPE -version $VERSION -sasToken $TOKEN
 } else {
-    $ARTIFACT_URL = Get-BCArtifactUrl -country $COUNTRY -type $TYPE -version $VERSION -select $SELECT
+    $ARTIFACT_URL = Get-BCArtifactUrl -country $COUNTRY -type $TYPE -version $VERSION -select $SELECT -sasToken $TOKEN
 }
 
 # Download the artifact
