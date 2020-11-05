@@ -16,7 +16,7 @@ $LICENSE_DATA = $env:INPUT_LICENSE
 # Get the workspace folder
 $WORKSPACE = $env:GITHUB_WORKSPACE
 
-if (($LICENSE_DATA -ne $nil) -and (-ne "")) {
+if (($LICENSE_DATA -ne $nil) -and ($LICENSE_DATA -ne "")) {
     # Path to the license file
     $LICENSE_FILE = "$WORKSPACE/License.flf"
 
@@ -27,7 +27,7 @@ if (($LICENSE_DATA -ne $nil) -and (-ne "")) {
 # Build the credentials
 $CREDENTIAL = New-Object pscredential $USERNAME, (ConvertTo-SecureString -String $PASSWORD -AsPlainText -Force)
 
-if (($LICENSE_FILE -ne $nil) -and (-ne "")) {
+if (($LICENSE_FILE -ne $nil) -and ($LICENSE_FILE -ne "")) {
     # Create the container
     New-BCContainer -accept_eula -containerName $NAME -artifactUrl $ARTIFACT -Credential $CREDENTIAL -auth UserPassword -updateHosts -additionalParameters @("--volume $WORKSPACE`:c:\project") -licenseFile $LICENSE_FILE
 } else {
