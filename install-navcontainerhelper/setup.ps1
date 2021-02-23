@@ -1,5 +1,5 @@
 # Install the module
-Install-Module -Name navcontainerhelper -Force
+Install-Module -Name bccontainerhelper -Force
 
 # Import the module into PowerShell
-Import-Module -Name navcontainerhelper -Force
+Import-Module -Name bccontainerhelper -Force
