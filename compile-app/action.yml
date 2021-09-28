@@ -38,4 +38,4 @@ runs:
         INPUT_USERNAME: ${{ inputs.username }}
         INPUT_PASSWORD: ${{ inputs.password }}
         INPUT_NAME: ${{ inputs.name }}
-        INPUT_CURRENT: ${{ inputs.current }}
+        INPUT_CURRENT: ${{ inputs.current_version }}
