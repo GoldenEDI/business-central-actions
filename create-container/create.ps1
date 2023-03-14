@@ -16,13 +16,20 @@ $LICENSE_DATA = $env:INPUT_LICENSE
 # Get the workspace folder
 $WORKSPACE = $env:GITHUB_WORKSPACE
 
-if (($LICENSE_DATA -ne $nil) -and ($LICENSE_DATA -ne "")) {
-    # Path to the license file
-    if (($INPUT_LICENSE_IS_FLF -ne $nil) -and ($INPUT_LICENSE_IS_FLF -ne "")) {
-        $LICENSE_FILE = "$WORKSPACE/License.flf"
+# Check if we got a URL
+if (($INPUT_LICENSE_URL -ne $nil) -and ($INPUT_LICENSE_URL -ne "")) {
+    # Check if the url contains information on if this is an FLF file or bclicense, default to flf.
+    if ($INPUT_LICENSE_URL -like "*bclicense") {
+        $LICENSE_FILE = "$WORKSPACE/License.bclicense"    
     } else {
-        $LICENSE_FILE = "$WORKSPACE/License.bclicense"
+        $LICENSE_FILE = "$WORKSPACE/License.flf" 
     }
+
+    # Download the license file
+    Invoke-WebRequest -Uri $INPUT_LICENSE_URL -OutFile $LICENSE_FILE
+} elseif (($LICENSE_DATA -ne $nil) -and ($LICENSE_DATA -ne "")) {
+    # Path to the license file
+    $LICENSE_FILE = "$WORKSPACE/License.flf"
 
     # Decode and create the license file
     [IO.File]::WriteAllBytes($LICENSE_FILE, [Convert]::FromBase64String($LICENSE_DATA))
