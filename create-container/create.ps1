@@ -18,7 +18,11 @@ $WORKSPACE = $env:GITHUB_WORKSPACE
 
 if (($LICENSE_DATA -ne $nil) -and ($LICENSE_DATA -ne "")) {
     # Path to the license file
-    $LICENSE_FILE = "$WORKSPACE/License.flf"
+    if (($INPUT_LICENSE_IS_FLF -ne $nil) -and ($INPUT_LICENSE_IS_FLF -ne "")) {
+        $LICENSE_FILE = "$WORKSPACE/License.flf"
+    } else {
+        $LICENSE_FILE = "$WORKSPACE/License.bclicense"
+    }
 
     # Decode and create the license file
     [IO.File]::WriteAllBytes($LICENSE_FILE, [Convert]::FromBase64String($LICENSE_DATA))

@@ -23,6 +23,9 @@ inputs:
   license:
     description: "The license file content, base64 encoded."
     required: false
+  license_is_flf:
+    description: "Set to true if the license is FLF otherwise bclicense is expected."
+    required: false
 
 outputs:
   name:
@@ -42,3 +45,4 @@ runs:
         INPUT_PASSWORD: ${{ inputs.password }}
         INPUT_NAME: ${{ inputs.name }}
         INPUT_LICENSE: ${{ inputs.license }}
+        INPUT_LICENSE_IS_FLF: ${{ inputs.license_if_flf }}
